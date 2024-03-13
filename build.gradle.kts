@@ -14,6 +14,7 @@ dependencies {
 
 subprojects {
     apply {
+        "$projectDir/detekt/detekt.gradle.kts"
         plugin("java")
         plugin(Plugins.jacoco)
         plugin(Plugins.javaTestFixtures)
