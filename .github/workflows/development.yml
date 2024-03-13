@@ -12,9 +12,8 @@ on:
 jobs:
   test:
     name: Test application
-    runs-on: openjdk:17-alpine
+    runs-on: self-hosted
     timeout-minutes: 10
     steps:
-
       - name: "🔍 run tests"
         run: ./gradlew clean test
