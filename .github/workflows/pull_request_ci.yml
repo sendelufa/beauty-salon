@@ -1,43 +1,16 @@
-name: pull_request_ci
+name: Build Gradle project
 
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
+  push:
   workflow_dispatch:
 
 jobs:
-  test:
-    name: Test application
-
+  build-gradle-project:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-
     steps:
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-
-    - name: "🛎️ Check out code"
-      uses: actions/checkout@v3
-
+    - name: Checkout project sources
+      uses: actions/checkout@v4
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
-
-    - name: "gradle clean"
-      run: ./gradlew clean
-
-    - name: "🔍 run detekt"
-      run: ./gradlew detekt
-
-    - name: "🔍 run test coverage"
-      run: ./gradlew jacocoTestCoverageVerification
-
-    - name: "🔍 run tests"
-      run: ./gradlew test
+    - name: Run build with Gradle Wrapper
+      run: ./gradlew build
