@@ -51,9 +51,13 @@ subprojects {
 
         withType<KotlinCompile> {
             kotlinOptions {
-                jvmTarget = JavaVersion.VERSION_17.toString()
+                jvmTarget = '17'
                 allWarningsAsErrors = failOnWarning
                 freeCompilerArgs = listOf("-Xjvm-default=enable")
+            }
+            compileOptions {
+                sourceCompatibility JavaVersion.VERSION_17
+                targetCompatibility JavaVersion.VERSION_17
             }
         }
 
