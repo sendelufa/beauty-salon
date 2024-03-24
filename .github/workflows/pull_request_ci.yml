@@ -16,7 +16,10 @@ jobs:
         java-version: '21'
     - name: Setup Gradle
       uses: gradle/gradle-build-action@v2
+    - uses: gradle/wrapper-validation-action@v2
+    - name: Grant Permissions to gradlew
+      run: chmod +x gradlew
     - name: What in Folder
-      run: ls .
+      run: ls -al .
     - name: Run build with Gradle Wrapper
       run: ./gradlew build
