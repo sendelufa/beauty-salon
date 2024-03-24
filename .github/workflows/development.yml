@@ -1,0 +1,22 @@
+name: Development
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+  workflow_call:
+
+jobs:
+  test:
+    name: Test application
+    runs-on: self-hosted
+    timeout-minutes: 10
+    steps:
+      - name: "🛎️ Check out code"
+        uses: actions/checkout@v3
+
+      - name: "🔍 run tests"
+        run: ./gradlew clean test
